@@ -19,7 +19,6 @@ app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
 
   if (!name || !email || !message) {
-    console.error('Validation error:', { name, email, message });
     return res.status(400).json({ error: 'Name, email, and message are required.' });
   }
 
@@ -39,7 +38,6 @@ app.post('/api/contact', async (req, res) => {
   };
 
   try {
-    console.log('Sending email with data:', data);
     await axios.post(
       'https://api.brevo.com/v3/smtp/email',
       data,
@@ -53,7 +51,11 @@ app.post('/api/contact', async (req, res) => {
     );
     res.status(200).json({ message: 'Message sent successfully!' });
   } catch (error) {
-    console.error('Error sending email:', error?.response?.data || error.message, error);
+    console.error('Error sending email:', error?.response?.data || error.message);
     res.status(500).json({ error: 'Failed to send message. Please try again.' });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
