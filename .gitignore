@@ -47,3 +47,4 @@ src/app/components/Pic/*.pdf
 
 # Project specific
 .gemini/
+.env*.local
