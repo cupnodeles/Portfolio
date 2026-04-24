@@ -17,6 +17,7 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+.
 
 # next.js
 .next/
@@ -41,6 +42,8 @@ public/certs/
 public/CV.pdf
 src/app/components/Cert/
 src/app/components/Pic/*.pdf
+.server.js
+
 
 # Project specific
 .gemini/

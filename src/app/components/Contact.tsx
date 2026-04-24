@@ -10,11 +10,13 @@ const socialLinks = [
   { icon: Mail, label: "Email", href: "mailto:kenmontano098@gmail.com", username: "kenmontano098@gmail.com" },
 ];
 
+
 export function Contact() {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true });
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
 
@@ -22,15 +24,31 @@ export function Contact() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError("");
+    try {
+      const response = await fetch("http://localhost:3001/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      if (response.ok) {
+        setSent(true);
+        setForm({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSent(false), 4000);
+      } else {
+        const data = await response.json();
+        setError(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      setError("Failed to send message. Please try again.");
+    } finally {
       setLoading(false);
-      setSent(true);
-      setForm({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSent(false), 4000);
-    }, 1500);
+    }
   };
 
   const inputClass = (field: string) =>
@@ -135,6 +153,16 @@ export function Contact() {
               className="space-y-4 p-6 rounded-2xl border border-purple-900/30"
               style={{ background: "rgba(10,0,30,0.6)", backdropFilter: "blur(12px)" }}
             >
+              {error && (
+                <div className="mb-2 p-2 rounded bg-red-900/40 text-red-300 text-xs text-center border border-red-700/30">
+                  {error}
+                </div>
+              )}
+              {sent && (
+                <div className="mb-2 p-2 rounded bg-green-900/40 text-green-300 text-xs text-center border border-green-700/30">
+                  Message sent successfully!
+                </div>
+              )}
               <h3 className="text-gray-200 mb-2" style={{ fontWeight: 600 }}>
                 Send a Message
               </h3>
