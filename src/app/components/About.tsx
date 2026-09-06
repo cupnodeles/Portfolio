@@ -1,46 +1,46 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import { GraduationCap, MapPin, Calendar, User } from "lucide-react";
+import { GraduationCap, MapPin, BadgeCheck, User } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import profilePic from "./Pic/kennn.jpg";
 
 const facts = [
   { icon: GraduationCap, label: "Degree", value: "BS Computer Science" },
-  { icon: Calendar, label: "Year", value: "4th Year Student" },
+  { icon: BadgeCheck, label: "Status", value: "Graduate · Class of 2026" },
   { icon: MapPin, label: "Location", value: "Philippines" },
-  { icon: User, label: "Position", value: "Data Analyst Intern" },
+  { icon: User, label: "Position", value: "Data Analyst" },
 ];
 
 const timeline = [
   {
     year: "2022",
-    title: "Started BSCS Course at TUP-Manila",
-    desc: "Began my college journey into Computer Science — discovering the foundations of programming and problem solving.",
+    title: "Started BSCS at TUP-Manila",
+    desc: "Built foundations in programming and problem solving, starting from zero coding background.",
     color: "#a78bfa",
   },
   {
     year: "2023",
-    title: "Core Programming Languages",
-    desc: "Learned and applied C++, C#, Python, Java, and JavaScript through course subjects and personal activities.",
+    title: "Shipped Course Projects",
+    desc: "Applied Python, SQL, and core languages across 5+ academic and personal projects.",
     color: "#60a5fa",
   },
   {
     year: "2024",
-    title: "Data Structures & Algorithms",
-    desc: "Deep-dived into DSA, strengthening my analytical thinking and computational problem-solving skills.",
+    title: "Data Structures & Analytics",
+    desc: "Strengthened analytical thinking with DSA, statistics, and data cleaning workflows.",
     color: "#e879f9",
   },
   {
     year: "2025",
-    title: "Machine Learning & AI",
-    desc: "Explored Machine Learning and Artificial Intelligence — building models, training datasets, and understanding AI systems.",
+    title: "Machine Learning & AI Builds",
+    desc: "Built chatbots and vision prototypes with Gemini, YOLOv8, and Flask.",
     color: "#34d399",
   },
   {
     year: "2026",
-    title: "Applying AI to Create",
-    desc: "Currently applying my accumulated knowledge using AI to build real-world projects and intelligent systems.",
+    title: "Graduated + Hired as Data Analyst",
+    desc: "Graduated BSCS from TUP-Manila, completed Data Analyst internship (Feb–May), and got accepted as full-time Data Analyst at S.P. Madrid & Associates in June. Placed 4th at TICP x Kiro Hackathon with CareerFlow.",
     color: "#f97316",
   },
 ];
@@ -65,28 +65,27 @@ export function About() {
   const inView = useInView(ref, { once: true });
 
   return (
-    <section id="about" className="relative z-10 pt-40 pb-28 px-6">
+    <section id="about" className="relative z-10 pt-32 pb-24 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <FadeIn>
           <div className="text-center mb-16">
-            <span className="text-purple-400 text-sm tracking-[0.3em] uppercase font-mono">
+                <span className="text-purple-400 text-sm tracking-[0.3em] uppercase font-mono">
               01. About Me
             </span>
             <h2
               className="text-4xl md:text-6xl text-white mt-2"
               style={{ fontWeight: 700 }}
             >
-              The{" "}
+              Data Analyst{" "}
               <span style={{
-                background: "linear-gradient(135deg, #a78bfa, #60a5fa)",
+                background: "linear-gradient(135deg, #c084fc, #60a5fa)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}>
-                Explorer
-              </span>{" "}
-              Behind the Data
+                Behind the Data
+              </span>
             </h2>
           </div>
         </FadeIn>
@@ -128,19 +127,18 @@ export function About() {
           {/* Text side */}
           <FadeIn delay={0.2}>
             <div className="space-y-6">
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-200 leading-relaxed">
                 Hey there! I'm <span className="text-purple-300 font-medium">Ken Zedrick Montano</span>, a
-                4th-year BSCS student with a burning passion for Data and AI. I believe every dataset
-                tells a story that's waiting to be discovered — and I'm the one who listens.
+                BSCS graduate (TUP-Manila, Class of 2026) working as a Data Analyst. I turn messy operational
+                data into clean reports, dashboards, and automation that teams actually use.
               </p>
-              <p className="text-gray-400 leading-relaxed">
-                From writing my first C++ program where it was relatively hard for me to understand with no foundation in coding
-                to building AI-powered systems, my journey has beena constant evolution. I love how the combination of data, logic, and creativity
-                turns raw numbers into meaningful insights and intelligent applications.
+              <p className="text-gray-300 leading-relaxed">
+                I started with no coding background and worked up through C++, Python, SQL, and AI-assisted
+                development. Now I focus on Excel automation, data cleaning, and stakeholder-ready insights —
+                combining data, logic, and clear communication.
               </p>
-              <p className="text-gray-400 leading-relaxed">
-                When I'm not deep in code or datasets, you'll find me exploring the latest in AI research
-                , stargazing, or just playing games.
+              <p className="text-gray-300 leading-relaxed">
+                Interests: AI research, data visualization, and open source.
               </p>
 
               {/* Info grid */}
@@ -152,7 +150,7 @@ export function About() {
                   >
                     <Icon className="w-4 h-4 text-purple-400 shrink-0" />
                     <div>
-                      <div className="text-xs text-gray-500">{label}</div>
+                      <div className="text-xs text-gray-400">{label}</div>
                       <div className="text-sm text-gray-200">{value}</div>
                     </div>
                   </div>
@@ -165,14 +163,14 @@ export function About() {
         {/* Timeline */}
         <FadeIn delay={0.1}>
           <h3 className="text-center text-xl text-gray-300 mb-10" style={{ fontWeight: 600 }}>
-            My Journey Through the{" "}
+            My Journey From{" "}
             <span style={{
-              background: "linear-gradient(135deg, #a78bfa, #e879f9)",
+              background: "linear-gradient(135deg, #c084fc, #60a5fa)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}>
-              Data Universe
+              Classroom to Production
             </span>
           </h3>
         </FadeIn>
@@ -202,7 +200,7 @@ export function About() {
                       <div className="text-gray-100 mb-1" style={{ fontWeight: 600 }}>
                         {item.title}
                       </div>
-                      <div className="text-gray-400 text-sm">{item.desc}</div>
+                      <div className="text-gray-300 text-sm">{item.desc}</div>
                     </div>
                   </div>
 

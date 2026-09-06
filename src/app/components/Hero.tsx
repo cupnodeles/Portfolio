@@ -3,10 +3,10 @@ import { motion } from "motion/react";
 import { ChevronDown, Github, Linkedin, Mail, Instagram, Download } from "lucide-react";
 
 const TYPED_STRINGS = [
-  "Data Analyst Intern",
-  "4th Year BSCS Student",
-  "Python Developer",
-  "AI Explorer",
+  "Data Analyst",
+  "SQL · Python · Excel",
+  "Dashboards & Automation",
+  "BSCS Graduate · Class of 2026",
 ];
 
 function useTypingEffect(strings: string[], speed = 80, pause = 1800) {
@@ -62,7 +62,8 @@ export function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center overflow-hidden"
     >
       {/* Glowing orb behind */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] max-w-[92vw] max-h-[92vw] rounded-full pointer-events-none"
+        aria-hidden="true"
         style={{
           background: "radial-gradient(circle, rgba(120,40,220,0.18) 0%, rgba(80,20,160,0.08) 50%, transparent 70%)",
           filter: "blur(40px)",
@@ -78,7 +79,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/40 bg-purple-900/20 text-purple-300 text-xs mb-6 backdrop-blur-sm"
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          BSCS Student · 4th Year
+          Data Analyst @ S.P. Madrid & Associates
         </motion.div>
 
         {/* Name */}
@@ -87,7 +88,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
           className="text-5xl md:text-7xl lg:text-8xl text-white mb-4 tracking-tight"
-          style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", fontWeight: 700 }}
+          style={{ fontFamily: "'Space Grotesk', 'Inter', system-ui, sans-serif", fontWeight: 700, lineHeight: 1.05 }}
         >
           <span
             className="relative inline-block"
@@ -107,10 +108,12 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-xl md:text-3xl text-cyan-300 mb-6 h-10 flex items-center justify-center gap-1"
+          className="text-xl md:text-3xl text-cyan-300 mb-6 min-h-10 flex items-center justify-center gap-1"
           style={{ fontFamily: "monospace" }}
+          aria-live="polite"
+          aria-label={typed}
         >
-          <span className="text-gray-500">&gt;</span>
+          <span className="text-gray-400">&gt;</span>
           <span>{typed}</span>
           <span className="w-0.5 h-7 bg-cyan-400 animate-pulse ml-0.5" />
         </motion.div>
@@ -120,10 +123,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Turning raw data into cosmic insights. A BSCS student exploring the universe of data —
-          from Python scripts to AI-powered systems — one dataset at a time.
+          BSCS graduate (TUP-Manila, 2026) turning raw data into decisions — I automate Excel reporting
+          and build dashboards and AI-assisted tools with Python, SQL, and Streamlit.
         </motion.p>
 
         {/* Buttons */}
@@ -135,7 +138,7 @@ export function Hero() {
         >
           <button
             onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-3 rounded-full text-white text-sm font-medium relative overflow-hidden group"
+            className="px-8 py-3 rounded-full text-white text-sm font-medium relative overflow-hidden group focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:outline-offset-2"
             style={{
               background: "linear-gradient(135deg, #7c3aed, #4f46e5)",
               boxShadow: "0 0 25px rgba(124, 58, 237, 0.5)",
@@ -145,14 +148,15 @@ export function Hero() {
               View My Work
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </button>
 
           <a
             href="/Ken_Montano_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 rounded-full text-white text-sm font-medium border border-cyan-500/40 bg-cyan-900/10 hover:bg-cyan-800/20 hover:border-cyan-400/60 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all duration-300 flex items-center gap-2"
+            className="px-8 py-3 rounded-full text-white text-sm font-medium border border-cyan-500/40 bg-cyan-900/10 hover:bg-cyan-800/20 hover:border-cyan-400/60 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2 transition-all duration-300 flex items-center gap-2"
           >
             <Download className="w-4 h-4" />
             Download CV
@@ -171,7 +175,9 @@ export function Hero() {
               key={label}
               href={href}
               aria-label={label}
-              className="w-10 h-10 rounded-full border border-purple-500/30 bg-purple-900/20 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-400/60 hover:bg-purple-800/30 hover:shadow-[0_0_14px_rgba(168,85,247,0.4)] transition-all duration-300"
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="w-10 h-10 rounded-full border border-purple-500/30 bg-purple-900/20 flex items-center justify-center text-gray-300 hover:text-white hover:border-purple-400/60 hover:bg-purple-800/30 hover:shadow-[0_0_14px_rgba(168,85,247,0.4)] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-purple-400 focus-visible:outline-offset-2 transition-all duration-300"
             >
               <Icon className="w-4 h-4" />
             </a>
@@ -182,10 +188,11 @@ export function Hero() {
       {/* Scroll indicator */}
       <motion.button
         onClick={scrollToAbout}
+        aria-label="Scroll to About section"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 hover:text-purple-400 transition-colors cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 hover:text-purple-300 focus-visible:text-purple-300 focus-visible:outline-2 focus-visible:outline-purple-400 rounded-lg px-2 transition-colors cursor-pointer"
       >
         <span className="text-xs tracking-widest uppercase">Scroll</span>
         <motion.div
@@ -217,7 +224,7 @@ export function Hero() {
             delay: i * 0.5,
           }}
         >
-          {["df.head()", "sklearn", "np.array", "pandas", "seaborn", "matplotlib"][i]}
+          {["df.head()", "sql.join", "np.array", "pandas", "streamlit", "supabase"][i]}
         </motion.div>
       ))}
     </section>

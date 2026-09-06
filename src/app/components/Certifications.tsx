@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Award, Info, ChevronRight, BrainCircuit, Sparkles, Zap } from "lucide-react";
+import { Info, BrainCircuit, Sparkles, Zap, Trophy } from "lucide-react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -29,10 +29,17 @@ export function Certifications() {
       date: "February 28, 2025",
       color: "#e879f9",
     },
+    {
+      icon: <Trophy className="w-10 h-10" />,
+      title: "TICP x Kiro Hackathon — 4th Place with CareerFlow",
+      issuer: "Hackathon / Team Achievement",
+      date: "June 23, 2026",
+      color: "#eab308",
+    },
   ];
 
   return (
-    <section id="certifications" className="relative py-20 px-6">
+    <section id="certifications" className="relative py-24 px-6">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -59,7 +66,7 @@ export function Certifications() {
         </motion.div>
 
         {/* Certifications Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8 max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
@@ -86,7 +93,7 @@ export function Certifications() {
                 {cert.title}
               </h3>
               <div className="text-purple-400 text-sm mb-1">{cert.issuer}</div>
-              <div className="text-gray-500 text-xs">{cert.date}</div>
+              <div className="text-gray-400 text-xs">{cert.date}</div>
             </motion.div>
           ))}
         </div>
@@ -106,7 +113,7 @@ export function Certifications() {
         >
           <Info className="w-8 h-8 text-purple-400" />
           <p className="text-gray-300 leading-relaxed">
-            More Certification and Achievements will be updated soon.
+            Currently focused on production analytics work — next up: Google Data Analytics and SQL certifications.
           </p>
         </motion.div>
       </div>

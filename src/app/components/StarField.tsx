@@ -43,6 +43,9 @@ export function StarField() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Respect reduced motion: render one static frame, no loop
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     let width = window.innerWidth;
     let height = window.innerHeight;
     canvas.width = width;
@@ -223,6 +226,12 @@ export function StarField() {
     }
 
     draw();
+
+    // If reduced motion, draw once and skip loop/listeners
+    if (prefersReducedMotion) {
+      cancelAnimationFrame(animFrameRef.current);
+      return;
+    }
 
     const handleResize = () => {
       width = window.innerWidth;

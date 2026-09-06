@@ -9,6 +9,16 @@ import { Certifications } from "./components/Certifications";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 
+function SectionDivider({ color }: { color: string }) {
+  return (
+    <div
+      className="w-full h-px mx-auto max-w-4xl"
+      aria-hidden="true"
+      style={{ background: `linear-gradient(90deg, transparent, rgba(${color},0.4), transparent)` }}
+    />
+  );
+}
+
 export default function App() {
   return (
     <div
@@ -71,59 +81,56 @@ export default function App() {
       <main className="relative" style={{ zIndex: 1 }}>
         <Hero />
 
-        {/* Divider */}
-        <div className="w-full h-px mx-auto max-w-4xl"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)" }} />
+        <SectionDivider color="168,85,247" />
 
         <About />
 
-        <div className="w-full h-px mx-auto max-w-4xl"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(96,165,250,0.4), transparent)" }} />
+        <SectionDivider color="96,165,250" />
 
         <Skills />
 
-        <div className="w-full h-px mx-auto max-w-4xl"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(232,121,249,0.4), transparent)" }} />
+        <SectionDivider color="232,121,249" />
 
         <Experience />
 
-        <div className="w-full h-px mx-auto max-w-4xl"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(52,211,153,0.4), transparent)" }} />
+        <SectionDivider color="52,211,153" />
 
         <Projects />
 
-        <div className="w-full h-px mx-auto max-w-4xl"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(52,211,153,0.4), transparent)" }} />
+        <SectionDivider color="232,121,249" />
 
         <Certifications />
 
-        <div className="w-full h-px mx-auto max-w-4xl"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(52,211,153,0.4), transparent)" }} />
+        <SectionDivider color="96,165,250" />
 
         <Contact />
       </main>
 
       <Footer />
 
-      {/* Cursor glow effect */}
+      {/* Global styles */}
       <style>{`
         html { scroll-behavior: smooth; }
-        
+
         * { box-sizing: border-box; }
 
         body {
           font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
         }
-        
+
+        section[id] { scroll-margin-top: 72px; }
+
         ::-webkit-scrollbar {
-          width: 6px;
+          width: 8px;
         }
         ::-webkit-scrollbar-track {
           background: #030010;
         }
         ::-webkit-scrollbar-thumb {
           background: #4c1d95;
-          border-radius: 3px;
+          border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
           background: #7c3aed;
@@ -132,6 +139,14 @@ export default function App() {
         ::selection {
           background: rgba(124, 58, 237, 0.4);
           color: #fff;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          html { scroll-behavior: auto; }
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+          }
         }
       `}</style>
     </div>

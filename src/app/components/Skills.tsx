@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { BarChart3, Code2, Binary, BrainCircuit } from "lucide-react";
+import { BarChart3, Code2, Binary, BrainCircuit, Puzzle, MessageSquareText, BookOpen, Users } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, Tooltip } from "recharts";
 
 // Max years = 3 (Excel). Bar width is proportional.
@@ -57,7 +57,7 @@ const radarData = [
   { subject: "Visualization", A: 60 },
   { subject: "AI", A: 90 },
   { subject: "ML", A: 67 },
-  { subject: "Analyzation", A: 87 },
+  { subject: "Analysis", A: 87 },
 ];
 
 const tools = [
@@ -73,13 +73,14 @@ const tools = [
   { name: "GitHub", slug: "simple-icons:github", color: "ffffff" },
   { name: "Google Colab", slug: "simple-icons:googlecolab", color: "f9ab00" },
   { name: "Excel", slug: "simple-icons:microsoftexcel", color: "217346" },
-  { name: "C", slug: "logos:c", color: "a8b9cc" },
+  { name: "Supabase", slug: "logos:supabase-icon", color: "3ecf8e" },
+  { name: "Streamlit", slug: "simple-icons:streamlit", color: "ff4b4b" },
+  { name: "Next.js", slug: "simple-icons:nextdotjs", color: "ffffff" },
   { name: "C++", slug: "logos:c-plusplus", color: "00599c" },
   { name: "JS", slug: "logos:javascript", color: "f7df1e" },
   { name: "Java", slug: "logos:java", color: "007396" },
   { name: "Gemini", slug: "simple-icons:googlegemini", color: "8e75ff" },
   { name: "ChatGPT", slug: "logos:openai-icon", color: "412991" },
-  { name: "Claude", slug: "simple-icons:claude", color: "d97757" },
 ];
 
 function YearBar({
@@ -183,7 +184,7 @@ export function Skills() {
   const headerInView = useInView(headerRef, { once: true });
 
   return (
-    <section id="skills" className="relative z-10 py-28 px-6">
+    <section id="skills" className="relative z-10 py-24 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -203,17 +204,17 @@ export function Skills() {
             My{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #60a5fa, #e879f9)",
+                background: "linear-gradient(135deg, #c084fc, #60a5fa)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              Cosmic Toolkit
+              Toolkit
             </span>
           </h2>
           <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-            Skills measured by years of experience — the longer the bar, the deeper the orbit.
+            Longer bar = deeper experience. Built through coursework, internship production work, and hackathons.
           </p>
         </motion.div>
 
@@ -229,7 +230,7 @@ export function Skills() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-6 mb-16 text-xs text-gray-500 font-mono"
+          className="flex items-center justify-center gap-6 mb-16 text-xs text-gray-400 font-mono"
         >
           {[1, 2, 3].map((yr) => (
             <div key={yr} className="flex items-center gap-2">
@@ -260,7 +261,7 @@ export function Skills() {
             >
               Skill Radar
             </h3>
-            <p className="text-center text-gray-600 text-xs mb-4 font-mono">
+            <p className="text-center text-gray-500 text-xs mb-4 font-mono">
               Proficiency %
             </p>
             <ResponsiveContainer width="100%" height={300}>
@@ -323,39 +324,41 @@ export function Skills() {
             {[
               {
                 label: "Problem Solving",
-                value: "Strong analytical mindset with a data-driven approach to every challenge",
-                icon: "🧩",
+                value: "Break ambiguous requests into clean, testable data workflows",
+                Icon: Puzzle,
               },
               {
                 label: "Communication",
-                value: "Translating complex insights into clear, understandable language",
-                icon: "💬",
+                value: "Turn complex findings into clear reports stakeholders act on",
+                Icon: MessageSquareText,
               },
               {
                 label: "Continuous Learning",
-                value: "Always exploring the latest in AI/ML research and tech trends",
-                icon: "📚",
+                value: "Ship with new AI tools fast — Gemini, OpenAI, Streamlit, Supabase",
+                Icon: BookOpen,
               },
               {
                 label: "Collaboration",
-                value: "A solid team player with hands-on experience in group projects and academic collaborations",
-                icon: "🤝",
+                value: "Team-tested via internship production work and hackathon builds",
+                Icon: Users,
               },
-            ].map((item) => (
+            ].map(({ label, value, Icon }) => (
               <div
-                key={item.label}
-                className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-white/3 hover:border-purple-500/30 hover:bg-purple-900/10 transition-all duration-300"
+                key={label}
+                className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:border-purple-500/30 hover:bg-purple-900/10 transition-all duration-300"
               >
-                <span className="text-xl">{item.icon}</span>
+                <span className="w-9 h-9 rounded-lg border border-purple-500/30 bg-purple-500/10 flex items-center justify-center shrink-0">
+                  <Icon className="w-4 h-4 text-purple-300" />
+                </span>
                 <div>
                   <div
                     className="text-gray-200 text-sm"
                     style={{ fontWeight: 600 }}
                   >
-                    {item.label}
+                    {label}
                   </div>
                   <div className="text-gray-400 text-xs mt-0.5">
-                    {item.value}
+                    {value}
                   </div>
                 </div>
               </div>
@@ -371,11 +374,11 @@ export function Skills() {
           transition={{ duration: 0.7 }}
           className="text-center mt-12"
         >
-          <p className="text-gray-500 text-sm mb-8 tracking-widest uppercase font-mono">
+          <p className="text-gray-400 text-sm mb-8 tracking-widest uppercase font-mono">
             Tools and Technologies
           </p>
           
-          <div className="overflow-hidden relative">
+          <div className="overflow-hidden relative group/marquee">
             <motion.div
               animate={{ x: [0, "-50%"] }}
               transition={{
@@ -386,7 +389,7 @@ export function Skills() {
                   ease: "linear",
                 },
               }}
-              className="flex gap-8 items-center w-fit"
+              className="flex gap-8 items-center w-fit group-hover/marquee:[animation-play-state:paused] motion-reduce:animate-none"
             >
               {[...tools, ...tools].map((tool: any, i: number) => (
                 <div
@@ -404,7 +407,7 @@ export function Skills() {
                       className="w-full h-full object-contain filter brightness-100 group-hover:brightness-125 transition-all"
                     />
                   </div>
-                  <span className="text-[10px] font-mono text-gray-500 group-hover:text-purple-300 transition-colors">
+                  <span className="text-[10px] font-mono text-gray-400 group-hover:text-purple-300 transition-colors">
                     {tool.name}
                   </span>
                 </div>
